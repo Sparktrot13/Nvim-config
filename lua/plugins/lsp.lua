@@ -20,10 +20,18 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      local lspconfig = require("lspconfig")
-      lspconfig.lua_ls.setup({})
-      lspconfig.ruff.setup({})
-      lspconfig.gdscript.setup({})
+      vim.lsp.config("ruff",{
+        init_options = {
+          logLevel = 'error',
+          -- ruff language server settings
+        }
+      })
+      vim.lsp.config('lua_ls', {})
+      vim.lsp.config('gdscript', {})
+      -- local lspconfig = require("lspconfig")
+      -- lspconfig.lua_ls.setup({})
+      -- lspconfig.ruff.setup({})
+      -- lspconfig.gdscript.setup({})
 
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, {desc="Hover Description"})
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
